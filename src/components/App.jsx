@@ -4,15 +4,17 @@ import { Text } from "./Text/Text";
 import { removeSymbols } from "helpers/removeSymbols";
 import { makeArrayFromText } from "helpers/makeArrayFromText";
 import { makeArrayOfUniqueSymbols } from "helpers/makeArrayOfUniqueSymbols";
+import { findUniqueSymbol } from "helpers/findUniqueSymbol";
 
 export const App = () => {
   const [text, setText] = useState("");
 
-  let modifiedText;
-  let arrayFromInputText;
-  let arrayOfUniqueSymbols;
+  let modifiedText = "";
+  let arrayFromInputText = [];
+  let arrayOfUniqueSymbols = [];
+  let uniqueSymbol = "";
 
-  const findUniqueSymbol = (text) => {
+  const formSubmit = (text) => {
     setText(text);
   };
 
@@ -20,11 +22,12 @@ export const App = () => {
     modifiedText = removeSymbols(text);
     arrayFromInputText = makeArrayFromText(modifiedText);
     arrayOfUniqueSymbols = makeArrayOfUniqueSymbols(arrayFromInputText);
+    uniqueSymbol = findUniqueSymbol(arrayOfUniqueSymbols);
   }
 
   return (
     <div>
-      <Form onSubmit={findUniqueSymbol} />
+      <Form onSubmit={formSubmit} />
       <div>
         {text && (
           <>
@@ -38,16 +41,22 @@ export const App = () => {
             <Text text={modifiedText} />
           </>
         )}
-        {modifiedText && arrayFromInputText.length > 0 && (
+        {arrayFromInputText.length > 0 && (
           <>
             <h3>2. Array of words from modified text.</h3>
             <Text text={JSON.stringify(arrayFromInputText)} />
           </>
         )}
-        {arrayOfUniqueSymbols && arrayFromInputText.length > 0 && (
+        {arrayOfUniqueSymbols.length > 0 && (
           <>
-            <h3>2. Array of unique symbols.</h3>
+            <h3>3. Array of unique symbols.</h3>
             <Text text={JSON.stringify(arrayOfUniqueSymbols)} />
+          </>
+        )}
+        {uniqueSymbol && (
+          <>
+            <h3>4. Unique symbol.</h3>
+            <p>{uniqueSymbol}</p>
           </>
         )}
       </div>
