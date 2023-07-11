@@ -3,11 +3,15 @@ import { Form } from "./Form/Form";
 import { Text } from "./Text/Text";
 import { removeSymbols } from "helpers/removeSymbols";
 import { makeArrayFromText } from "helpers/makeArrayFromText";
+import { makeArrayOfUniqueSymbols } from "helpers/makeArrayOfUniqueSymbols";
 
 export const App = () => {
   const [text, setText] = useState("");
+
   let modifiedText;
   let arrayFromInputText;
+  let arrayOfUniqueSymbols;
+
   const findUniqueSymbol = (text) => {
     setText(text);
   };
@@ -15,6 +19,7 @@ export const App = () => {
   if (text) {
     modifiedText = removeSymbols(text);
     arrayFromInputText = makeArrayFromText(modifiedText);
+    arrayOfUniqueSymbols = makeArrayOfUniqueSymbols(arrayFromInputText);
   }
 
   return (
@@ -37,6 +42,12 @@ export const App = () => {
           <>
             <h3>2. Array of words from modified text.</h3>
             <Text text={JSON.stringify(arrayFromInputText)} />
+          </>
+        )}
+        {arrayOfUniqueSymbols && arrayFromInputText.length > 0 && (
+          <>
+            <h3>2. Array of unique symbols.</h3>
+            <Text text={JSON.stringify(arrayOfUniqueSymbols)} />
           </>
         )}
       </div>
