@@ -2,17 +2,20 @@ import { useState } from "react";
 import { Form } from "./Form/Form";
 import { Text } from "./Text/Text";
 import { removeSymbols } from "helpers/removeSymbols";
+import { makeArrayFromText } from "helpers/makeArrayFromText";
 
 export const App = () => {
   const [text, setText] = useState("");
-  const [modifiedText, setModifiedText] = useState("");
-
+  let modifiedText;
+  let arrayFromInputText;
   const findUniqueSymbol = (text) => {
-    console.log("text:", text);
     setText(text);
-
-    setModifiedText(removeSymbols(text));
   };
+
+  if (text) {
+    modifiedText = removeSymbols(text);
+    arrayFromInputText = makeArrayFromText(modifiedText);
+  }
 
   return (
     <div>
@@ -28,6 +31,12 @@ export const App = () => {
           <>
             <h3>1. Modified text. Removed all non alphabetic symbols</h3>
             <Text text={modifiedText} />
+          </>
+        )}
+        {modifiedText && arrayFromInputText.length > 0 && (
+          <>
+            <h3>2. Array of words from modified text.</h3>
+            <Text text={JSON.stringify(arrayFromInputText)} />
           </>
         )}
       </div>
