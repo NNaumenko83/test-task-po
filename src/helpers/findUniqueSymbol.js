@@ -12,4 +12,5 @@ export const findUniqueSymbol = (lettersArray = []) => {
       return letter;
     }
   }
+  return (letter = "There is not unique symbol");
 };
