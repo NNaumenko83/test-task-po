@@ -5,6 +5,7 @@ export const Form = ({ onSubmit }) => {
     e.preventDefault();
     console.log();
     onSubmit(e.target.elements.text.value);
+    e.target.reset();
   };
   return (
     <div>

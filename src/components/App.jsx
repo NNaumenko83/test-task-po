@@ -5,6 +5,7 @@ import { removeSymbols } from "helpers/removeSymbols";
 import { makeArrayFromText } from "helpers/makeArrayFromText";
 import { makeArrayOfUniqueSymbols } from "helpers/makeArrayOfUniqueSymbols";
 import { findUniqueSymbol } from "helpers/findUniqueSymbol";
+import { Container } from "./App.styled";
 
 export const App = () => {
   const [text, setText] = useState("");
@@ -26,12 +27,12 @@ export const App = () => {
   }
 
   return (
-    <div>
+    <Container>
       <Form onSubmit={formSubmit} />
       <div>
         {text && (
           <>
-            <h3>Your text</h3>
+            <h3>Your entered text</h3>
             <Text text={text} />
           </>
         )}
@@ -60,6 +61,6 @@ export const App = () => {
           </>
         )}
       </div>
-    </div>
+    </Container>
   );
 };
