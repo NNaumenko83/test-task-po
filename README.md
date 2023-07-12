@@ -2,7 +2,7 @@
 
 This project was created using **_Create React App_**.
 
-###Setup:
+### Setup:
 
 1. Make sure you have the LTS version of **Node.js** installed on your computer. Download and install it if necessary.
 2. Install the project's basic dependencies by running the command **_npm install_**.
